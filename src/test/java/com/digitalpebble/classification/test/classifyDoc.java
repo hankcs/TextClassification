@@ -39,8 +39,8 @@ public class classifyDoc extends TestCase
 
     public void testcreateModel() throws Exception
     {
-        // opens a file containing one sentence per line and
-        // generates a model out of it
+        // opens a file containing one sentence per line and 打开一个每行一句话的文件
+        // generates a model out of it 然后由它训练模型
         String fileSubj = "corpus/quote.tok.gt9.5000";
         String fileObj = "corpus/plot.tok.gt9.5000";
 
@@ -113,7 +113,7 @@ public class classifyDoc extends TestCase
         long l1 = System.currentTimeMillis();
         double overallPerf = (double) totalcorrect / (double) totalDocs;
         System.out.println("overall perfs " + overallPerf);
-        System.out.println("classification done in " + (l1 - l0));
+        System.out.println("classification done in " + (l1 - l0) + " ms");
 
 
         // delete the temp directory
