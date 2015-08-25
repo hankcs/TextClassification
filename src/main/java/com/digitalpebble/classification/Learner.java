@@ -64,6 +64,7 @@ public abstract class Learner
 
     /**
      * 设置权重计算方法 Specify the method used for building a vector from a document *
+     *
      * @param method
      */
     public void setMethod(Parameters.WeightingMethod method)
@@ -85,6 +86,7 @@ public abstract class Learner
      * This must be called between the creation of the documents and the
      * learning. It keeps only the terms occuring in at least mindocs documents
      * and in a maximum of maxdocs documents.
+     *
      * @param minDocs 最低出现在多少文档中
      * @param maxdocs 最高出现在多少文档中
      */
@@ -128,6 +130,12 @@ public abstract class Learner
 
     /**
      * Create a Document from an array of Strings and specify the label
+     */
+    /**
+     * 从一个单词数据创建文档并且指定label
+     * @param tokenstring
+     * @param label
+     * @return
      */
     public Document createDocument(String[] tokenstring, String label)
     {
@@ -298,6 +306,7 @@ public abstract class Learner
     }
 
     /**
+     * 设置参数
      * Specifies the parameters passed to the learning engine*
      */
     public void setParameters(String parameters)

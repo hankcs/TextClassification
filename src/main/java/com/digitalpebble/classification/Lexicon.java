@@ -52,7 +52,9 @@ public class Lexicon
 
     private int nextAttributeID = 1;
 
-    // private int method_used = Parameters.method_frequency;
+    /**
+     * 权重计算方法
+     */
     private Parameters.WeightingMethod method_used = Parameters.WeightingMethod.FREQUENCY;
 
     private int docNum = 0;
@@ -65,13 +67,19 @@ public class Lexicon
 
     private List<String> labels;
 
-    /** a learner can specify which classifier to use* */
+    /**
+     * a learner can specify which classifier to use*
+     */
     private String classifierType;
 
-    /** list of fields used by a corpus * */
+    /**
+     * list of fields used by a corpus *
+     */
     private Map<String, Integer> fields = new HashMap<String, Integer>();
 
-    /** Custom weighting schemes for fields **/
+    /**
+     * Custom weighting schemes for fields
+     **/
     private Map<String, WeightingMethod> customWeights = new HashMap<String, WeightingMethod>();
 
     private int lastFieldId = -1;
@@ -86,7 +94,12 @@ public class Lexicon
         labels = new ArrayList<String>();
     }
 
-    // loads a new lexicon
+    /**
+     * 从文件创建一个词表
+     *
+     * @param file
+     * @throws IOException
+     */
     public Lexicon(String file) throws IOException
     {
         this();
@@ -139,19 +152,25 @@ public class Lexicon
         return this.method_used;
     }
 
-    /** Returns the default weighting scheme **/
+    /**
+     * Returns the default weighting scheme
+     **/
     public WeightingMethod getMethod()
     {
         return this.method_used;
     }
 
-    /** Sets the default weighting scheme **/
+    /**
+     * Sets the default weighting scheme
+     **/
     public void setMethod(WeightingMethod method)
     {
         this.method_used = method;
     }
 
-    /** Sets the weighting scheme for a specific field **/
+    /**
+     * Sets the weighting scheme for a specific field
+     **/
     public void setMethod(WeightingMethod method, String fieldName)
     {
         WeightingMethod existingmethod = this.customWeights.get(fieldName);
@@ -211,6 +230,9 @@ public class Lexicon
         return labs;
     }
 
+    /**
+     * 增加文档计数
+     */
     public void incrementDocCount()
     {
         this.docNum++;
@@ -274,7 +296,9 @@ public class Lexicon
 
     }
 
-    /** Keep the top n attributes according to an AttributeFilter* */
+    /**
+     * Keep the top n attributes according to an AttributeFilter*
+     */
     public void applyAttributeFilter(AttributeScorer filter, int rank)
     {
         if (filter == null)
@@ -328,6 +352,12 @@ public class Lexicon
         return index[0];
     }
 
+    /**
+     * 从文件加载
+     *
+     * @param filename 路径
+     * @throws IOException
+     */
     private void loadFromFile(String filename) throws IOException
     {
         File file = new File(filename);
@@ -452,6 +482,7 @@ public class Lexicon
 
     /**
      * 是否规范化向量（将向量长度缩放为单位1）
+     *
      * @param normalizeVector
      */
     public void setNormalizeVector(boolean normalizeVector)
@@ -470,7 +501,9 @@ public class Lexicon
         return this.labels.size() - 1;
     }
 
-    /** Return a map with Integers as keys and attribute labels as value* */
+    /**
+     * Return a map with Integers as keys and attribute labels as value*
+     */
     public Map<Integer, String> getInvertedIndex()
     {
         TreeMap<Integer, String> inverted = new TreeMap<Integer, String>();
@@ -500,13 +533,17 @@ public class Lexicon
         this.classifierType = classifierType;
     }
 
-    /** Returns the number of attributes present in the lexicon **/
+    /**
+     * Returns the number of attributes present in the lexicon
+     **/
     public int getAttributesNum()
     {
         return tokenForm2index.size();
     }
 
-    /** Returns the largest ID used for an attribute **/
+    /**
+     * Returns the largest ID used for an attribute
+     **/
     public int maxAttributeID()
     {
         return nextAttributeID - 1;
